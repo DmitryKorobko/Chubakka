@@ -27,12 +27,7 @@ RSpec.describe 'UserPages', type: :request do
     end
 
     describe 'with valid information' do
-      before do
-        fill_in 'Name',         with: 'Test User'
-        fill_in 'Email',        with: 'user@test.com'
-        fill_in 'Password',     with: '12345678'
-        fill_in 'Confirmation', with: '12345678'
-      end
+      before { fill_signup_fields }
 
       it 'should create a user' do
         expect { click_button submit }.to change(User, :count).by(1)
@@ -42,6 +37,7 @@ RSpec.describe 'UserPages', type: :request do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@test.com') }
 
+        it { should have_link('Sign Out') }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
