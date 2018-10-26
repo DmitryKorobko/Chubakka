@@ -49,7 +49,12 @@ RSpec.describe 'UserPages', type: :request do
             click_link('Delete', match: :first)
           end.to change(User, :count).by(-1)
         end
+
         it { should_not have_link('Delete', href: user_path(admin)) }
+
+        it 'can not to delete admin user' do
+          expect { delete user_path(admin) }.not_to change(User, :count)
+        end
       end
     end
   end
@@ -135,6 +140,16 @@ RSpec.describe 'UserPages', type: :request do
       it { should have_link('Sign Out', href: signout_path) }
       specify { expect(user.reload.name).to  eq new_name }
       specify { expect(user.reload.email).to eq new_email }
+    end
+
+    describe 'forbidden attributes' do
+      let(:params) { { user: { admin: true, password: user.password, password_confirmation: user.password } } }
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params: params
+      end
+
+      specify { expect(user.reload).not_to be_admin }
     end
   end
 end
