@@ -22,10 +22,10 @@ def right_layout_links
 end
 
 def fill_signup_fields
-  fill_in 'Name',         with: 'Test User'
-  fill_in 'Email',        with: 'user@test.com'
-  fill_in 'Password',     with: '12345678'
-  fill_in 'Confirmation', with: '12345678'
+  fill_in 'Name',                  with: 'Test User'
+  fill_in 'Email',                 with: 'user@test.com'
+  fill_in 'Password',              with: '12345678'
+  fill_in 'Confirm Password',      with: '12345678'
 end
 
 def sign_in(user, options={})

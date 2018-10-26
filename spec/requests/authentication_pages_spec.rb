@@ -50,12 +50,13 @@ RSpec.describe 'AuthenticationPages', type: :request do
     describe 'for non-signed-in users' do
       let(:user) { create(:user) }
 
+      it { should_not have_link('Profile',     href: user_path(user)) }
+      it { should_not have_link('Settings',    href: edit_user_path(user)) }
+
       describe 'when attempting to visit a protected page' do
         before do
           visit edit_user_path(user)
-          fill_in 'Email',    with: user.email
-          fill_in 'Password', with: user.password
-          click_button 'Sign In'
+          sign_in(user)
         end
 
         describe 'after signing in' do
