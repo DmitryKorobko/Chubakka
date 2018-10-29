@@ -1,26 +1,5 @@
 <% if signed_in? %>
-  <div class="row">
-    <aside class="col-sm-4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="col-sm-8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
+  <%= render 'signed_content' %>
 <% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to the Chubakka</h1>
-
-    <h2>This is the home page for the Chubakka application.</h2>
-
-    <%= link_to 'Sign Up Now!', signup_path, class: 'btn btn-large btn-primary' %>
-  </div>
-
-  <%= link_to image_tag('rails.svg', alt: 'Rails', width: 130), 'http://rubyonrails.org/' %>
+  <%= render 'unsigned_content' %>
 <% end %>
