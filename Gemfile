@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'factory_bot_rails'
+  gem 'rspec-its'
 end
 
 group :development do
@@ -77,3 +78,4 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'launchy'
+gem 'responders'

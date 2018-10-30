@@ -23,7 +23,7 @@ RSpec.describe 'MicropostPages', type: :request do
 
     describe 'with valid information' do
 
-      before { fill_in 'micropost_content', with: 'Lorem ipsum' }
+      before { fill_in 'micropost-field', with: 'Lorem ipsum' }
       it 'should create a micropost' do
         expect { click_button 'Post' }.to change(Micropost, :count).by(1)
       end
